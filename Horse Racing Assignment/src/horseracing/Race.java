@@ -28,6 +28,10 @@ public class Race {
         return horses.size();
     }
 
+    public Horse getCurrentHorse(){
+        return horses.get(currentHorse);
+    }
+
     public Horse getNextHorse(){
         if (currentHorse == horses.size())
             currentHorse = 0;
@@ -66,7 +70,7 @@ public class Race {
         resetHorses();
         int numSpaces = (int)(raceLength*10);
         boolean done = false;
-        HorseRacingHelper.pauseForMilliseconds(1000);
+        HorseRacingHelper.pauseForMilliseconds(5000);
         HorseRacingHelper.playBackgroundMusicAndWait("Race.wav");
         HorseRacingHelper.playBackgroundMusic("horse_gallop.wav", true);
 
@@ -81,7 +85,7 @@ public class Race {
                 results.add(horse);
                 horse.setRaceFinished(true);
             } else if(!horse.raceFinished()){
-                horse.incrementPosition((int)(Math.random() * 4));
+                horse.incrementPosition(getIncrement(horse));
             }
 
             displayResults();
@@ -93,6 +97,15 @@ public class Race {
         HorseRacingHelper.stopMusic();
     }
     // Other methods for simulating the race, calculating winners, etc., can be added as needed
+
+    private int getIncrement(Horse horse) {
+        // we have racelength and racesurface (as attributes)
+        //horse.getDirtRating();
+        // horse.getGrassRating;
+        // horse.getMudRating;
+        // check race surface and check horses and compare race length with preferred length
+        return (int) (Math.random() * 8) + 1;
+    }
 
     private void resetHorses() {
         for (Horse horse : horses) {

@@ -13,7 +13,7 @@ public class HorseRacing {
 
             int numHorsesInRace = (int)(Math.random()*7)+5;
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.SHORT, HorseRacingHelper.DIRT);
+            Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.LONG, HorseRacingHelper.DIRT);
             race.displayRaceInfo();
 
             race.startRace();
@@ -26,6 +26,8 @@ public class HorseRacing {
     }
 
     private static boolean playAgain(Scanner in) {
+        System.out.print("\u001B[?25l");  // Hide the cursor
+        
         System.out.print("Play Again: (y/n): ");
         String result = in.nextLine();
 
