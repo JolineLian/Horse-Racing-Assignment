@@ -1,3 +1,4 @@
+// comment
 package horseracing;
 
 public class Horse{
@@ -23,7 +24,7 @@ public class Horse{
             this.number = 0;
             horseRating = 2;
         }
-
+        
         public void setNumber(int number){
             this.number = number;
         }
@@ -122,3 +123,12 @@ public class Horse{
         }
        
     }
+
+        private static void horizontalLine(int numCols) {
+            System.out.print("+");
+            for (int col = 1; col <= numCols; col++) {
+                System.out.print("-----------+");
+            }
+            System.out.println();
+        }
+}
