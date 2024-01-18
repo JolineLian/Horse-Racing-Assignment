@@ -121,14 +121,5 @@ public class Horse{
         public int getShowOdd(int placeOdd) {
             return 0;
         }
-       
-    }
-
-        private static void horizontalLine(int numCols) {
-            System.out.print("+");
-            for (int col = 1; col <= numCols; col++) {
-                System.out.print("-----------+");
-            }
-            System.out.println();
-        }
+    
 }
