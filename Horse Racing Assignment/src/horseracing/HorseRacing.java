@@ -15,6 +15,7 @@ public class HorseRacing {
 
             Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.LONG, HorseRacingHelper.DIRT);
             race.displayRaceInfo();
+            race.drawTable();
 
             race.startRace();
 

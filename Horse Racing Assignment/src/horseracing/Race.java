@@ -112,4 +112,18 @@ public class Race {
             horse.resetCurrenPosition();
         }
     }
+
+    public void drawTable(){
+        for (int i = 0; i < horses.size(); i++) {
+            Horse horse = horses.get(i);
+            String s1 = "" + horse.getName();
+            String s2 = "" + horse.getDirtRating();
+            String s3 = "" + horse.getGrassRating();
+            String s4 = "" + horse.getMudRating();
+
+        System.out.println("+--------------------+-----+-----+-----+");
+        System.out.printf("|%-20s|%5s|%5s|%5s|\n", s1, s2, s3, s4);
+    }
+    System.out.println("+--------------------+-----+-----+-----+");
+}
 }
