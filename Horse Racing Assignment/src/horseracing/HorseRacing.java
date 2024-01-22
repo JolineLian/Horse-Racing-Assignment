@@ -9,12 +9,13 @@ public class HorseRacing {
         HorseRacingHelper.prepareHorseRacingSimulation();
         Player p1 = new Player();
         boolean gameOver = false;
+
         while(!gameOver){
             HorseRacingHelper.clearConsole();
 
             int numHorsesInRace = (int)(Math.random()*7)+5;
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.LONG, HorseRacingHelper.DIRT);
+            Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.SHORT, HorseRacingHelper.DIRT);
             race.displayRaceInfo();
             race.drawTable();
             p1.initWalletBalance(in);
