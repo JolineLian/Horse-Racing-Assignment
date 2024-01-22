@@ -7,6 +7,7 @@ public class HorseRacing {
      public static void main(String[] args) {
         Scanner in = new Scanner(System.in);    
         HorseRacingHelper.prepareHorseRacingSimulation();
+        Player p1 = new Player();
         boolean gameOver = false;
         while(!gameOver){
             HorseRacingHelper.clearConsole();
@@ -16,19 +17,22 @@ public class HorseRacing {
             Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.LONG, HorseRacingHelper.DIRT);
             race.displayRaceInfo();
             race.drawTable();
+            p1.initWalletBalance(in);
+            p1.createBet(numHorsesInRace, in);
 
-            race.startRace();
+            race.startRace(p1);
+
+
 
             System.out.println("Race is Over");
+
             gameOver = playAgain(in);
         }
-
-        
     }
 
     private static boolean playAgain(Scanner in) {
         System.out.print("\u001B[?25l");  // Hide the cursor
-        
+
         System.out.print("Play Again: (y/n): ");
         String result = in.nextLine();
 

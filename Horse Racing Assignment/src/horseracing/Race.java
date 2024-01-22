@@ -66,11 +66,11 @@ public class Race {
     }
 
 
-    public void startRace(){
+    public void startRace(Player player){
         resetHorses();
         int numSpaces = (int)(raceLength*10);
         boolean done = false;
-        HorseRacingHelper.pauseForMilliseconds(5000);
+        HorseRacingHelper.pauseForMilliseconds(1000);
         HorseRacingHelper.playBackgroundMusicAndWait("Race.wav");
         HorseRacingHelper.playBackgroundMusic("horse_gallop.wav", true);
 
@@ -95,6 +95,8 @@ public class Race {
         }
 
         HorseRacingHelper.stopMusic();
+
+        player.getResults(results, raceLength, raceSurface);
     }
     // Other methods for simulating the race, calculating winners, etc., can be added as needed
 
@@ -116,17 +118,13 @@ public class Race {
     public void drawTable(){
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
-            int winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
             String s1 = "" + horse.getName();
             String s2 = "" + horse.getDirtRating();
             String s3 = "" + horse.getGrassRating();
             String s4 = "" + horse.getMudRating();
-            String s5 = "" + winningOdds + " - 1";
-            String s6 = "" + horse.getPlaceOdd(winningOdds) + " - 1";
-            // String s7 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + " - 1";
 
-        System.out.println("+-------------------------+-----+-----+-----+");
-        System.out.printf("|%-25s|%5s|%5s|%5s|\n", s1, s2, s3, s4, s5, s6);
+        System.out.println("+--------------------+-----+-----+-----+");
+        System.out.printf("|%-20s|%5s|%5s|%5s|\n", s1, s2, s3, s4);
     }
     System.out.println("+--------------------+-----+-----+-----+");
 }
