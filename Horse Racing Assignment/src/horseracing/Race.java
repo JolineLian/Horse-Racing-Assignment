@@ -51,10 +51,6 @@ public class Race {
         System.out.println("Race Information:");
         System.out.println("Race Surface: " + raceSurface);
         System.out.println("Race Length: " + raceLength + " furlongs");
-        System.out.println("List of Horses:");
-        for (Horse horse : horses) {
-            System.out.println("- " + horse.getName());
-        }
     }
 
     public void displayResults(){
@@ -150,22 +146,23 @@ public class Race {
     }
 
     public void drawTable(){
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
+    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odd", "Place Odd");
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
-            int winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
+            double winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
             String s1 = "" + horse.getName();
-            String s2 = "" + horse.getDirtRating();
-            String s3 = "" + horse.getGrassRating();
-            String s4 = "" + horse.getMudRating();
-            String s5 = "" + winningOdds + "-1";
-            String s6 = "" + horse.getPlaceOdd(winningOdds) + "-1";
-            // String s7 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + "-1";
+            String s2 = "" + horse.getPreferredLength();
+            String s3 = "" + horse.getDirtRating();
+            String s4 = "" + horse.getGrassRating();
+            String s5 = "" + horse.getMudRating();
+            String s6 = "" + winningOdds + "-1";
+            String s7 = "" + horse.getPlaceOdd(winningOdds) + "-1";
+            // String s8 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + "-1";
 
-        System.out.println("+-------------------------+-----+-----+-----+-----+-----+");
-        System.out.printf("|%-25s|%5s|%5s|%5s|%5s|%5s|\n", s1, s2, s3, s4, s5, s6);
+        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
+        System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7);
     }
-
-    System.out.println("+--------------------+-----+-----+-----+");
-    System.out.println("+-------------------------+-----+-----+-----+-----+-----+");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
     }
 }

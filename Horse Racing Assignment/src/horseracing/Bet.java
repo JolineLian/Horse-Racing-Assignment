@@ -183,9 +183,9 @@ public class Bet {
     }
 
     public double betResults(List<Horse> results, double raceLength, String raceSurface) {
-        int winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
-        int placeOdd = results.get(2).getPlaceOdd(winOdd);
-        int showOdd = results.get(3).getShowOdd(placeOdd, winOdd);
+        double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
+        double placeOdd = results.get(2).getPlaceOdd(winOdd);
+        double showOdd = results.get(3).getShowOdd(placeOdd, winOdd);
 
         if (betType.equalsIgnoreCase("win")) {
             if (horseBet1 == results.get(1).getNumber()) {

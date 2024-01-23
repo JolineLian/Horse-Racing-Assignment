@@ -3,7 +3,7 @@ package horseracing;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
-// money
+
 public class Player {
     private double wallet;
     private List<Bet> bets;

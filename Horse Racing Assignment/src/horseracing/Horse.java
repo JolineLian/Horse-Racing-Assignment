@@ -71,55 +71,25 @@ public class Horse{
             finishedRace = false;
         }
 
-        public int getWinningOdd(double raceLength, String raceSurface){
-            int horseWinOdd = 0;
+        public double getWinningOdd(double raceLength, String raceSurface){
+            double winOdd = 2 + (Math.abs(preferredLength - raceLength));
 
-            if (preferredLength > raceLength - 4 && preferredLength < raceLength + 4) horseWinOdd = 10;
-            if (preferredLength >= raceLength - 3 && preferredLength <= raceLength + 3) horseWinOdd = 8;
-            if (preferredLength >= raceLength - 2 && preferredLength <= raceLength + 2) horseWinOdd = 6;
-            if (preferredLength >= raceLength - 1 && preferredLength <= raceLength + 1) horseWinOdd = 4;
-            if (preferredLength == raceLength) horseWinOdd = 2;
-            
-            if (raceSurface.equals("grass")) {
-                if (grassRating >= 91 && grassRating <= 100) horseWinOdd += 0;
-                if (grassRating >= 81 && grassRating <= 90) horseWinOdd += 1;
-                if (grassRating >= 71 && grassRating <= 80) horseWinOdd += 2;
-                if (grassRating >= 61 && grassRating <= 70) horseWinOdd += 3;
-                if (grassRating >= 51 && grassRating <= 60) horseWinOdd += 4;
-                if (grassRating < 50) horseWinOdd += 5;
-            }
+            if (raceSurface.equals("dirt")) winOdd += ((0 - dirtRating) + 10);
+            if (raceSurface.equals("grass")) winOdd += ((0 - grassRating) + 10);
+            if (raceSurface.equals("mud")) winOdd += ((0 - mudRating) + 10);
 
-            if (raceSurface.equals("dirt")) {
-                if (dirtRating >= 91 && dirtRating <= 100) horseWinOdd += 0;
-                if (dirtRating >= 81 && dirtRating <= 90) horseWinOdd += 1;
-                if (dirtRating >= 71 && dirtRating <= 80) horseWinOdd += 2;
-                if (dirtRating >= 61 && dirtRating <= 70) horseWinOdd += 3;
-                if (dirtRating >= 51 && dirtRating <= 60) horseWinOdd += 4;
-                if (dirtRating < 50) horseWinOdd += 5; 
-            }
-
-            if (raceSurface.equals("mud")) {
-                if (mudRating >= 91 && mudRating <= 100) horseWinOdd += 0;
-                if (mudRating >= 81 && mudRating <= 90) horseWinOdd += 1;
-                if (mudRating >= 71 && mudRating <= 80) horseWinOdd += 2;
-                if (mudRating >= 61 && mudRating <= 70) horseWinOdd += 3;
-                if (mudRating >= 51 && mudRating <= 60) horseWinOdd += 4;
-                if (mudRating < 50) horseWinOdd += 5;
-            };
-
-            return horseWinOdd;
-            // max is 15
+            return winOdd;
         }
 
         // the higher chance they have of winning the higher change they have of placing, if their chance of winning is super low then their chancec of placing is lower
-        public int getPlaceOdd(int winOdd) { 
-            if (winOdd > 1 && winOdd <= 4) return winOdd + 2;
-            if (winOdd > 4 && winOdd <= 7) return winOdd + 4;
-            if (winOdd > 7 && winOdd <= 10) return winOdd + 6;
-            return winOdd - 2;
+        public double getPlaceOdd(double winOdd) { 
+            if (winOdd < 3) return winOdd;
+            if (winOdd >= 3 && winOdd <= 5) return winOdd - 1;
+            if (winOdd > 5 && winOdd <= 7) return winOdd + 2;
+            return winOdd + 4;
         }
 
-        public int getShowOdd(int placeOdd, int winOdd) {
+        public double getShowOdd(double placeOdd, double winOdd) {
             if (winOdd < placeOdd) return placeOdd + 2;
             if (winOdd > placeOdd) return placeOdd - 2;
             return placeOdd + 4;
