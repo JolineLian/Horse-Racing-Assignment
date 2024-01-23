@@ -152,14 +152,20 @@ public class Race {
     public void drawTable(){
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
+            int winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
             String s1 = "" + horse.getName();
             String s2 = "" + horse.getDirtRating();
             String s3 = "" + horse.getGrassRating();
             String s4 = "" + horse.getMudRating();
+            String s5 = "" + winningOdds + "-1";
+            String s6 = "" + horse.getPlaceOdd(winningOdds) + "-1";
+            // String s7 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + "-1";
 
-        System.out.println("+--------------------+-----+-----+-----+");
-        System.out.printf("|%-20s|%5s|%5s|%5s|\n", s1, s2, s3, s4);
+        System.out.println("+-------------------------+-----+-----+-----+-----+-----+");
+        System.out.printf("|%-25s|%5s|%5s|%5s|%5s|%5s|\n", s1, s2, s3, s4, s5, s6);
     }
+
     System.out.println("+--------------------+-----+-----+-----+");
+    System.out.println("+-------------------------+-----+-----+-----+-----+-----+");
     }
 }

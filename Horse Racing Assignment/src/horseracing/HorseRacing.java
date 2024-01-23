@@ -9,13 +9,18 @@ public class HorseRacing {
         HorseRacingHelper.prepareHorseRacingSimulation();
         Player p1 = new Player();
         boolean gameOver = false;
+
         while(!gameOver){
             HorseRacingHelper.clearConsole();
 
             int numHorsesInRace = (int)(Math.random()*7)+5;
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace,(int)(Math.random()*3), (int)(Math.random()*3));
-            
+            int trackLength = (int)(Math.random()*3);
+
+            int trackSurface = (int)(Math.random()*3);
+
+            Race race = HorseRacingHelper.createRace(numHorsesInRace,trackLength, trackSurface);
+
             race.displayRaceInfo();
             race.drawTable();
             p1.initWalletBalance(in);
