@@ -14,7 +14,8 @@ public class HorseRacing {
 
             int numHorsesInRace = (int)(Math.random()*7)+5;
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace, HorseRacingHelper.LONG, HorseRacingHelper.DIRT);
+            Race race = HorseRacingHelper.createRace(numHorsesInRace,(int)(Math.random()*3), (int)(Math.random()*3));
+            
             race.displayRaceInfo();
             race.drawTable();
             p1.initWalletBalance(in);

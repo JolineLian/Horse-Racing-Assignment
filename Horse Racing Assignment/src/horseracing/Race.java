@@ -85,7 +85,11 @@ public class Race {
                 results.add(horse);
                 horse.setRaceFinished(true);
             } else if(!horse.raceFinished()){
+
+                // HorseRacingHelper.pauseForMilliseconds(5000);
+
                 horse.incrementPosition(getIncrement(horse));
+
             }
 
             displayResults();
@@ -95,19 +99,49 @@ public class Race {
         }
 
         HorseRacingHelper.stopMusic();
-
+        
         player.getResults(results, raceLength, raceSurface);
     }
     // Other methods for simulating the race, calculating winners, etc., can be added as needed
 
     private int getIncrement(Horse horse) {
         // we have racelength and racesurface (as attributes)
-        //horse.getDirtRating();
-        // horse.getGrassRating;
-        // horse.getMudRating;
+        horse.getDirtRating();
+        horse.getGrassRating();
+        horse.getMudRating();
+        this.getRaceLength();
+        this.getRaceSurface();
+
         // check race surface and check horses and compare race length with preferred length
-        return (int) (Math.random() * 8) + 1;
+    
+
+        int d = (int)(7 - Math.abs(horse.getPreferredLength() - this.raceLength));
+
+        // System.out.println(horse.getName() + " d = " + d);
+
+        if (raceSurface.equals("grass")) {
+            d += horse.getGrassRating() /2 + 2;
+        }
+        else if (raceSurface.equals("mud")) {
+            d += horse.getMudRating() /2 + 2;   
+        }  
+        else {
+            d += horse.getDirtRating() /2 + 2;
+        }
+
+        // System.out.println(horse.getName() + " d = " + d);
+
+        int incrementSize = (int)(Math.random() * d) + 1;
+
+        // System.out.println(horse.getName() + " Increment size: " + incrementSize);
+
+        // HorseRacingHelper.pauseForMilliseconds(5000);
+
+        return incrementSize;
+
     }
+
+
 
     private void resetHorses() {
         for (Horse horse : horses) {
@@ -127,5 +161,5 @@ public class Race {
         System.out.printf("|%-20s|%5s|%5s|%5s|\n", s1, s2, s3, s4);
     }
     System.out.println("+--------------------+-----+-----+-----+");
-}
+    }
 }
