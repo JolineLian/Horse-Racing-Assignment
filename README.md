@@ -5,5 +5,4 @@ Horse racing is a simple simulation in which horses race on different tracks and
 
 ## INSTALLATION
 clone the repo:
-git clone https://github.com/JolineLian/Horse-Racing-Assignment.git
 
