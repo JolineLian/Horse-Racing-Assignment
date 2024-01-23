@@ -115,6 +115,7 @@ public class HorseRacingHelper {
         for (int j = 1; j <= horses.size(); j++) {
             horses.get(j-1).setNumber(j);
         }
+        
         return new Race(horses, raceLength, terrain);
     }
 

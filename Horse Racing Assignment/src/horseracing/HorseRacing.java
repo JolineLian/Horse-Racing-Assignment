@@ -19,7 +19,7 @@ public class HorseRacing {
 
             int trackSurface = (int)(Math.random()*3);
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace,trackLength, trackSurface);
+            Race race = HorseRacingHelper.createRace(numHorsesInRace, trackLength, trackSurface);
 
             race.displayRaceInfo();
             race.drawTable();

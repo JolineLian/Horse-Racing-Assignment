@@ -96,7 +96,7 @@ public class Race {
 
         HorseRacingHelper.stopMusic();
         
-        player.getResults(results, raceLength, raceSurface);
+        player.getBetResults(results, raceLength, raceSurface);
     }
     // Other methods for simulating the race, calculating winners, etc., can be added as needed
 
