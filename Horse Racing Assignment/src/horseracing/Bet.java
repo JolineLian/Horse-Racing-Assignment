@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Bet {
-    private double amountBet;
-    private String betType;
-    private int horseBet1;
-    private int horseBet2;
+    private static double amountBet;
+    private static String betType;
+    private static int horseBet1;
+    private static int horseBet2;
     
 
     public Bet() {
@@ -211,4 +211,17 @@ public class Bet {
 
         return 0.0;
     }
+
+    public static int getHorseBet1() {
+        return horseBet1;
+        }
+
+    public static int getHorseBet2() {
+        return horseBet2;
+        }
+
+    public static String getBetType() {
+        return betType;
+        }     
+    
 }

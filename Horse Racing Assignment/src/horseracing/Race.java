@@ -75,7 +75,15 @@ public class Race {
             HorseRacingHelper.clearConsole();
             HorseRacingHelper.updateTrack(numSpaces, horses);
             Horse horse = getNextHorse();
-           
+
+            if (Bet.getBetType().equalsIgnoreCase("exacta")) {
+            System.out.println("\033[0;1m" + "You placed your bets on Horse #" + Bet.getHorseBet1() + " & #" + Bet.getHorseBet2());
+            }
+
+            else {
+            System.out.println("\033[0;1m" + "You placed your bets on Horse #" + Bet.getHorseBet1());
+
+            }
 
             if(!horse.raceFinished() && horse.getCurrentPosition() >= numSpaces){
                 results.add(horse);
