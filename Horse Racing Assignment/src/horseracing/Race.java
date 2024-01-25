@@ -154,8 +154,8 @@ public class Race {
     }
 
     public void drawTable(){
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
-    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odd", "Place Odd");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
+    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odds", "Place Odds", "Show Odds");
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
             double winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
@@ -166,11 +166,13 @@ public class Race {
             String s5 = "" + horse.getMudRating();
             String s6 = "" + winningOdds + "-1";
             String s7 = "" + horse.getPlaceOdd(winningOdds) + "-1";
-            // String s8 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + "-1";
+            String s8 = "" + horse.getShowOdd(horse.getPlaceOdd(winningOdds), winningOdds) + "-1";
+            // String s9 = "" + horse.getExactaOdd() + "-1";
+            // String s10 = "" + horse.getBoxingOdd() + "-1";
 
-        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
-        System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7);
+        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
+        System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7, s8);
     }
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
     }
 }
