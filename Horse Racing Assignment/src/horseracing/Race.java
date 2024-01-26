@@ -146,7 +146,6 @@ public class Race {
     }
 
 
-
     private void resetHorses() {
         for (Horse horse : horses) {
             horse.resetCurrenPosition();
@@ -154,25 +153,25 @@ public class Race {
     }
 
     public void drawTable(){
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
-    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odds", "Place Odds", "Show Odds");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+------------+");
+    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|%10s|%12s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odds", "Place Odds", "Show Odds", "Box Odds", "Exacta Odds");
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
             double winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
             String s1 = "" + horse.getName();
-            String s2 = "" + horse.getPreferredLength();
-            String s3 = "" + horse.getDirtRating();
-            String s4 = "" + horse.getGrassRating();
-            String s5 = "" + horse.getMudRating();
+            String s2 = "" + (int)horse.getPreferredLength() + " furlongs";
+            String s3 = "" + horse.getDirtRating() * 10;
+            String s4 = "" + horse.getGrassRating() * 10;
+            String s5 = "" + horse.getMudRating() * 10;
             String s6 = "" + winningOdds + "-1";
             String s7 = "" + horse.getPlaceOdd(winningOdds) + "-1";
             String s8 = "" + horse.getShowOdd(horse.getPlaceOdd(winningOdds), winningOdds) + "-1";
-            // String s9 = "" + horse.getExactaOdd() + "-1";
-            // String s10 = "" + horse.getBoxingOdd() + "-1";
+            // String s9 = "" + horse.getExactaBoxOdd() + "-1"; <<<<<<<<<<<<<<<
+            // String s10 = "" + horse.getExactaOdd() + "-1";
 
-        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
+        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+------------+");
         System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7, s8);
     }
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+------------+");
     }
 }

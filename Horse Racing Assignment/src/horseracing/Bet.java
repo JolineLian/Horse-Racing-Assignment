@@ -202,7 +202,7 @@ public class Bet {
                 return amountBet * showOdd;
             }
         }
-        if (betType.equalsIgnoreCase("bet")) {
+        if (betType.equalsIgnoreCase("box")) {
             
         }
         if (betType.equalsIgnoreCase("exacta")) {

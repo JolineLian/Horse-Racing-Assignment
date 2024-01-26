@@ -96,6 +96,13 @@ public class Horse{
         }
 
         public int getExactaOdd() {return 0;}
-    
-        public int getBoxingOdd() {return 0;}
+
+        public double getExactaBoxOdd(int[] oddsHorse1, int[] oddsHorse2) {
+            double decimalOddsHorse1 = (double) oddsHorse1[0] / oddsHorse1[1]; // HELP
+            double decimalOddsHorse2 = (double) oddsHorse2[0] / oddsHorse2[1];
+     
+            double totalOdds = (decimalOddsHorse1 * decimalOddsHorse2) - 1;  // multiplying number of selections for first by number of selections for second, minus 1
+
+            return totalOdds;
+        }
 }
