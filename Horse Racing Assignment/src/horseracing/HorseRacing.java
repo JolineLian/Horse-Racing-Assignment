@@ -14,12 +14,6 @@ public class HorseRacing {
         while(!gameOver){
             HorseRacingHelper.clearConsole();
 
-            int numHorsesInRace = (int)(Math.random()*7)+5;
-
-            int trackLength = (int)(Math.random()*3);
-
-            int trackSurface = (int)(Math.random()*3);
-
             Street street = new Street();
             Buildings bank = new Buildings("bank");
             Buildings store = new Buildings("shop");
