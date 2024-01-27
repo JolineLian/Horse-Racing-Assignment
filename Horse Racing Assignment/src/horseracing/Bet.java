@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Bet {
-    private static double amountBet;
-    private static String betType;
-    private static int horseBet1;
-    private static int horseBet2;
-    
+    private double amountBet;
+    private String betType;
+    private int horseBet1;
+    private int horseBet2;
 
     public Bet() {
         amountBet = 0.0;
@@ -58,13 +57,13 @@ public class Bet {
         wallet -= amountBet;
 
         if (betType.equalsIgnoreCase("win")) {
-            betWin(in, numHorses);
+            singleHorseBet(in, numHorses);
         }
         if (betType.equalsIgnoreCase("place")) {
-            betPlace(in, numHorses);
+            singleHorseBet(in, numHorses);
         }
         if (betType.equalsIgnoreCase("show")) {
-            betShow(in, numHorses);
+            singleHorseBet(in, numHorses);
         }
         if (betType.equalsIgnoreCase("bet")) {
             betBox(in, numHorses);
@@ -78,7 +77,7 @@ public class Bet {
         return amountBet;
     }
 
-    public void betWin(Scanner in, int numHorses) {
+    public void singleHorseBet(Scanner in, int numHorses) {
         System.out.println("which horse do you want to bet on (enter number)");
 
         while(!(in.hasNextInt())) {
@@ -97,43 +96,43 @@ public class Bet {
         }
     }
 
-    public void betPlace(Scanner in, int numHorses) {
-        System.out.println("which horse do you want to bet on (enter number)");
+    // public void betPlace(Scanner in, int numHorses) {
+    //     System.out.println("which horse do you want to bet on (enter number)");
 
-        while(!(in.hasNextInt())) {
-            in.nextLine();
-            System.out.println("enter a number:");
-        }
-        horseBet1 = Integer.parseInt(in.nextLine());
+    //     while(!(in.hasNextInt())) {
+    //         in.nextLine();
+    //         System.out.println("enter a number:");
+    //     }
+    //     horseBet1 = Integer.parseInt(in.nextLine());
 
-        while (horseBet1 < 0 || horseBet1 > numHorses) {
-            System.out.println("invalid input, please enter a correct horse number");
-            while(!(in.hasNextInt())) {
-                in.nextLine();
-                System.out.println("enter a number:");
-            }
-            horseBet1 = Integer.parseInt(in.nextLine());
-        }
-    }
+    //     while (horseBet1 < 0 || horseBet1 > numHorses) {
+    //         System.out.println("invalid input, please enter a correct horse number");
+    //         while(!(in.hasNextInt())) {
+    //             in.nextLine();
+    //             System.out.println("enter a number:");
+    //         }
+    //         horseBet1 = Integer.parseInt(in.nextLine());
+    //     }
+    // }
 
-    public void betShow(Scanner in, int numHorses) {
-        System.out.println("which horse do you want to bet on (enter number)");
+    // public void betShow(Scanner in, int numHorses) {
+    //     System.out.println("which horse do you want to bet on (enter number)");
 
-        while(!(in.hasNextInt())) {
-            in.nextLine();
-            System.out.println("enter a number:");
-        }
-        horseBet1 = Integer.parseInt(in.nextLine());
+    //     while(!(in.hasNextInt())) {
+    //         in.nextLine();
+    //         System.out.println("enter a number:");
+    //     }
+    //     horseBet1 = Integer.parseInt(in.nextLine());
 
-        while (horseBet1 < 0 || horseBet1 > numHorses) {
-            System.out.println("invalid input, please enter a correct horse number");
-            while(!(in.hasNextInt())) {
-                in.nextLine();
-                System.out.println("enter a number:");
-            }
-            horseBet1 = Integer.parseInt(in.nextLine());
-        }
-    }
+    //     while (horseBet1 < 0 || horseBet1 > numHorses) {
+    //         System.out.println("invalid input, please enter a correct horse number");
+    //         while(!(in.hasNextInt())) {
+    //             in.nextLine();
+    //             System.out.println("enter a number:");
+    //         }
+    //         horseBet1 = Integer.parseInt(in.nextLine());
+    //     }
+    // }
 
     public void betExacta(Scanner in, int numHorses) {
         System.out.println("which horse do you think will place first (enter number)");
@@ -186,6 +185,7 @@ public class Bet {
         double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
         double placeOdd = results.get(2).getPlaceOdd(winOdd);
         double showOdd = results.get(3).getShowOdd(placeOdd, winOdd);
+        double exactaOdd = winOdd * (placeOdd +1);
 
         if (betType.equalsIgnoreCase("win")) {
             if (horseBet1 == results.get(1).getNumber()) {
@@ -202,26 +202,28 @@ public class Bet {
                 return amountBet * showOdd;
             }
         }
-        if (betType.equalsIgnoreCase("bet")) {
+        if (betType.equalsIgnoreCase("box")) {
             
         }
         if (betType.equalsIgnoreCase("exacta")) {
-            
+            if (horseBet1 == results.get(1).getNumber() && horseBet2 == results.get(2).getNumber())
+                return amountBet * exactaOdd;
         }
 
         return 0.0;
     }
 
-    public static int getHorseBet1() {
+    public int getHorseBet1() {
         return horseBet1;
         }
 
-    public static int getHorseBet2() {
+    public int getHorseBet2() {
         return horseBet2;
         }
 
-    public static String getBetType() {
+    public String getBetType() {
         return betType;
-        }     
+        }
+
     
 }

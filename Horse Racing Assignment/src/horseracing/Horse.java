@@ -8,6 +8,7 @@ public class Horse{
         private int dirtRating;
         private double preferredLength;
 
+
         private int currentPosition;
         private boolean finishedRace;
         private int number;
@@ -95,7 +96,21 @@ public class Horse{
             return placeOdd + 4;
         }
 
-        public int getExactaOdd() {return 0;}
+
+        
+         public double getExactaOdd(double placeOdd, double winOdd) {                // exacta odds = 1/# of possible combinations
+            double exactaOdd = winOdd * (placeOdd +1);
+            return exactaOdd;
+        }                                                                            // # of possible combinations = n x (n - 1) <- eg. 10 x 9 (for the first pick you have 10 choices, for the second pick you have 9 choices)
+        
+        // SCRAPPED
+        // double exactaOdd = 0;                                                                           
+        // if (winOdd < (Race.numHorses()/2)) return exactaOdd + 6;
+        // if (placeOdd > (Race.numHorses()/2)) return exactaOdd + 2;
+        // exactaOdd = 1/ (Race.numHorses() * (Race.numHorses() - 1));
+        //     return exactaOdd;
+        // }
+
     
         public int getBoxingOdd() {return 0;}
 }

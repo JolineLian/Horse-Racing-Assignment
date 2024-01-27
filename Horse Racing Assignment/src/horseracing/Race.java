@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    private List<Horse> horses;
+    private static List<Horse> horses;
     private double raceLength; // in furlongs
     private String raceSurface; // "grass", "dirt", or "mud" (Uses HorseRacingHelper constants)
     private int currentHorse;
+    private static Player player;
 
-    private List<Horse> results;
+    private static List<Horse> results;
 
 
     public Race(List<Horse> horses, double raceLength, String raceSurface) {
@@ -18,13 +19,19 @@ public class Race {
         this.raceSurface = raceSurface;
         this.currentHorse = 0;
         this.results = new ArrayList<Horse>();
+        if (player == null)
+            player = new Player();
+    }
+
+    public static List<Horse> getResults() {
+        return results;
     }
 
     public List<Horse> getHorses() {
         return horses;
     }
 
-    public int numHorses(){
+    public static int numHorses(){
         return horses.size();
     }
 
@@ -76,15 +83,14 @@ public class Race {
             HorseRacingHelper.updateTrack(numSpaces, horses);
             Horse horse = getNextHorse();
 
-            if (Bet.getBetType().equalsIgnoreCase("exacta")) {
-            System.out.println("\033[0;1m" + "You placed your bets on Horse #" + Bet.getHorseBet1() + " & #" + Bet.getHorseBet2());
+            for (int i = 0; i<player.getBets().size();i++) {
+
+                if (player.getBets().get(i).getBetType().equalsIgnoreCase("exacta")){
+                    System.out.println("\033[0;1m" + "You placed your bets on Horse #" + player.getBets().get(i).getHorseBet1() + " & #" + player.getBets().get(i).getHorseBet2() + "\u001B[0m");
+                }else {
+                    System.out.println("\033[0;1m" + "Bet #" + (i+1) + " | " + "You placed your bets on Horse #" + player.getBets().get(i).getHorseBet1() + "\u001B[0m");
+                }
             }
-
-            else {
-            System.out.println("\033[0;1m" + "You placed your bets on Horse #" + Bet.getHorseBet1());
-
-            }
-
             if(!horse.raceFinished() && horse.getCurrentPosition() >= numSpaces){
                 results.add(horse);
                 horse.setRaceFinished(true);
@@ -154,8 +160,8 @@ public class Race {
     }
 
     public void drawTable(){
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
-    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odds", "Place Odds", "Show Odds");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
+    System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", "Horse Name", "Preferred Length", "Dirt Rating", "Grass Rating", "Mud Rating", "Win Odd", "Place Odd");
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
             double winningOdds = horse.getWinningOdd(getRaceLength(), getRaceSurface());
@@ -166,13 +172,11 @@ public class Race {
             String s5 = "" + horse.getMudRating();
             String s6 = "" + winningOdds + "-1";
             String s7 = "" + horse.getPlaceOdd(winningOdds) + "-1";
-            String s8 = "" + horse.getShowOdd(horse.getPlaceOdd(winningOdds), winningOdds) + "-1";
-            // String s9 = "" + horse.getExactaOdd() + "-1";
-            // String s10 = "" + horse.getBoxingOdd() + "-1";
+            // String s8 = "" + horse.getShowOdd(getPlaceOdd(winningOdds)) + "-1";
 
-        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
-        System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7, s8);
+        System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
+        System.out.printf("|%-25s|%20s|%15s|%15s|%15s|%10s|%10s|\n", s1, s2, s3, s4, s5, s6, s7);
     }
-    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+----------+----------+");
+    System.out.println("+-------------------------+--------------------+---------------+---------------+---------------+----------+----------+");
     }
 }

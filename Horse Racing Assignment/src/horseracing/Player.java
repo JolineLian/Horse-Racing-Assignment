@@ -92,4 +92,8 @@ public class Player {
 
         System.out.println("You have won " + amountWon + " dollars :), you now have " + wallet + " dollars");
     }
+
+    public List<Bet> getBets() {
+        return bets;
+    }
 }
