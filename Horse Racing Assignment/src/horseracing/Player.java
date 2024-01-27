@@ -21,17 +21,17 @@ public class Player {
         inventory = new ArrayList<String>();
     }
 
-    public static void depositMoney(double amountChanged) {
+    public static void depositMoney(double amountChanged) { // Gives amountChanged to the bank and subtracts it from the wallet. We did this to make the betting system more realistic
         bank += amountChanged;
         wallet -= amountChanged;
     }
 
-    public static void withdrawMoney(double amountChanged) {
+    public static void withdrawMoney(double amountChanged) {    // Opposite of depositMoney. Bank 'loses' money and it gets added to wallet.
         bank -= amountChanged;
         wallet += amountChanged;
     }
 
-    public void createBet(int numHorses, Scanner in) {
+    public void createBet(int numHorses, Scanner in) {  // Scans which bet the user wants to place. Allows for variety of bets
         int betCounter = 1;
         System.out.println("Do you want to place a bet?");
         toBetOrNot = in.nextLine();
@@ -64,7 +64,7 @@ public class Player {
         }
     }
 
-    public void getBetResults(List<Horse> results, double raceLength, String raceSurface) {
+    public void getBetResults(List<Horse> results, double raceLength, String raceSurface) { // Displays how much money was gained/lost
         double amountWon = 0.0;
         double amountLost = 0.0;
 

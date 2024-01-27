@@ -24,10 +24,10 @@ public class Bet {
             return;
         }
 
-        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): "); // Scanner
+        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): "); // Scans users response
         betType = in.nextLine();
 
-        while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) {
+        while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) { // If they type anything other than the following, it asks again
             System.out.println("Invalid input. Would you still like to bet?");
             toBetOrNot = in.nextLine();
             if (toBetOrNot.equalsIgnoreCase("N") || toBetOrNot.equalsIgnoreCase("no")) {
@@ -146,7 +146,8 @@ public class Bet {
         }
     }
 
-    public double betResults(List<Horse> results, double raceLength, String raceSurface) {
+    public double betResults(List<Horse> results, double raceLength, String raceSurface) {  // Returns odds for each betting type
+        // Used at the end of the race to return amt of money made
         double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
         double placeOdd = results.get(2).getPlaceOdd(winOdd);
         double showOdd = results.get(3).getShowOdd(placeOdd, winOdd);

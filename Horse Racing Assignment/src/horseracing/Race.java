@@ -114,21 +114,18 @@ public class Race {
     }
     // Other methods for simulating the race, calculating winners, etc., can be added as needed
 
-    private int getIncrement(Horse horse) {
-        // we have racelength and racesurface (as attributes)
-        // horse.getDirtRating();
-        // horse.getGrassRating();
-        // horse.getMudRating();
-        // this.getRaceLength();
-        // this.getRaceSurface();
 
+    // Elina
+    // Returns an increment size based on the horses's stats
+    private int getIncrement(Horse horse) {
         // check race surface and check horses and compare race length with preferred length
     
 
+        // finds the difference between preferred length and race length
+        // if the difference is really big, eg. 7, it will return 7 - 7 = 0
         int d = (int)(7 - Math.abs(horse.getPreferredLength() - raceLength));
 
-        // System.out.println(horse.getName() + " d = " + d);
-
+        // adds grass/mud/dirt rating to d
         if (raceSurface.equals("grass")) {
             d += horse.getGrassRating() /2 + 2;
         }
@@ -139,13 +136,9 @@ public class Race {
             d += horse.getDirtRating() /2 + 2;
         }
 
-        // System.out.println(horse.getName() + " d = " + d);
-
+        // returns a random # between 1 and d
+        // + 1 ensures that horses will always move at least one space and makes it possible for incrementSize to return d
         int incrementSize = (int)(Math.random() * d) + 1;
-
-        // System.out.println(horse.getName() + " Increment size: " + incrementSize);
-
-        // HorseRacingHelper.pauseForMilliseconds(5000);
 
         return incrementSize;
 

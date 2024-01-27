@@ -104,13 +104,15 @@ public class Horse{
         }
 
 
-        
-         public double getExactaOdd(double placeOdd, double winOdd) {                // exacta odds = 1/# of possible combinations
-            double exactaOdd = winOdd * (placeOdd + 1);
+        // Elina
+        // exacta odds = 1/# of possible combinations
+        // # of possible combinations = n x (n - 1) <- eg. 10 x 9 (for the first pick you have 10 choices, for the second pick you have 9 choices)
+         public double getExactaOdd(double placeOdd, double winOdd) {      
+            double exactaOdd = winOdd * (placeOdd + 1);                    
             return exactaOdd;
-        }                                                                            // # of possible combinations = n x (n - 1) <- eg. 10 x 9 (for the first pick you have 10 choices, for the second pick you have 9 choices)
+        }                                                                  
         
-        // SCRAPPED
+        // Elina - SCRAPPED (commented for records)
         // double exactaOdd = 0;                                                                           
         // if (winOdd < (Race.numHorses()/2)) return exactaOdd + 6;
         // if (placeOdd > (Race.numHorses()/2)) return exactaOdd + 2;
@@ -123,7 +125,7 @@ public class Horse{
             double decimalOddsHorse1 = (double) oddsHorse1[0] / oddsHorse1[1]; 
             double decimalOddsHorse2 = (double) oddsHorse2[0] / oddsHorse2[1];
      
-            double boxOdd = (decimalOddsHorse1 * decimalOddsHorse2) - 1;  // multiplying number of selections for first by number of selections for second, minus 1
+            double boxOdd = (decimalOddsHorse1 * decimalOddsHorse2) - 1;  // Valerie - multiplying number of selections for first by number of selections for second, minus 1
 
             return boxOdd;
         }
