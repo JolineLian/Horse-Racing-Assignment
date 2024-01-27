@@ -176,6 +176,7 @@ public class Bet {
                 horseBet2 = Integer.parseInt(in.nextLine());
             }
         }
+    }
 
     public double betResults(List<Horse> results, double raceLength, String raceSurface) {  // Returns odds for each betting type
         // Used at the end of the race to return amt of money made
