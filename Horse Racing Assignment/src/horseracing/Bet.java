@@ -17,7 +17,7 @@ public class Bet {
     }
 
     public void startbetting (Scanner in, double wallet, int numHorses) {
-        String bet = "";  
+        String toBetOrNot = "";  
 
         if (wallet <= 0) {
             System.out.println("You do not have enough money to bet");
@@ -29,12 +29,14 @@ public class Bet {
 
         while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) {
             System.out.println("Invalid input. Would you still like to bet?");
-            bet = in.nextLine();
-            if (bet.equalsIgnoreCase("N") || bet.equalsIgnoreCase("no")) {
+            toBetOrNot = in.nextLine();
+            if (toBetOrNot.equalsIgnoreCase("N") || toBetOrNot.equalsIgnoreCase("no")) {
                 return;
             }
-            System.out.println("Please enter what type of bet you want to place: ");
+            if (toBetOrNot.equalsIgnoreCase("Y") || toBetOrNot.equalsIgnoreCase("yes")) {
+            System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): ");
             betType = in.nextLine();
+            }
         }
 
         System.out.println("How much would you like to bet?");
@@ -46,7 +48,7 @@ public class Bet {
         amountBet = Double.parseDouble(in.nextLine());
 
         while (amountBet > wallet || amountBet < 0) {
-            System.out.println("Invalid Input, please enter an amount greater than 0 but less than what's in your wallet");
+            System.out.println("Invalid Input, please enter an amount greater than 0 but less than what's in your wallet, you have " + wallet + " dollars");
             while (!(in.hasNextDouble())) {
             in.nextLine();
             System.out.println("enter a number:");
@@ -84,6 +86,7 @@ public class Bet {
             in.nextLine();
             System.out.println("enter a number:");
         }
+
         horseBet1 = Integer.parseInt(in.nextLine());
 
         while (!(horseBet1 > 0 && horseBet1 <= numHorses)) {
@@ -95,44 +98,6 @@ public class Bet {
             horseBet1 = Integer.parseInt(in.nextLine());
         }
     }
-
-    // public void betPlace(Scanner in, int numHorses) {
-    //     System.out.println("which horse do you want to bet on (enter number)");
-
-    //     while(!(in.hasNextInt())) {
-    //         in.nextLine();
-    //         System.out.println("enter a number:");
-    //     }
-    //     horseBet1 = Integer.parseInt(in.nextLine());
-
-    //     while (horseBet1 < 0 || horseBet1 > numHorses) {
-    //         System.out.println("invalid input, please enter a correct horse number");
-    //         while(!(in.hasNextInt())) {
-    //             in.nextLine();
-    //             System.out.println("enter a number:");
-    //         }
-    //         horseBet1 = Integer.parseInt(in.nextLine());
-    //     }
-    // }
-
-    // public void betShow(Scanner in, int numHorses) {
-    //     System.out.println("which horse do you want to bet on (enter number)");
-
-    //     while(!(in.hasNextInt())) {
-    //         in.nextLine();
-    //         System.out.println("enter a number:");
-    //     }
-    //     horseBet1 = Integer.parseInt(in.nextLine());
-
-    //     while (horseBet1 < 0 || horseBet1 > numHorses) {
-    //         System.out.println("invalid input, please enter a correct horse number");
-    //         while(!(in.hasNextInt())) {
-    //             in.nextLine();
-    //             System.out.println("enter a number:");
-    //         }
-    //         horseBet1 = Integer.parseInt(in.nextLine());
-    //     }
-    // }
 
     public void betExacta(Scanner in, int numHorses) {
         System.out.println("which horse do you think will place first (enter number)");
@@ -215,15 +180,15 @@ public class Bet {
 
     public int getHorseBet1() {
         return horseBet1;
-        }
+    }
 
     public int getHorseBet2() {
         return horseBet2;
-        }
+    }
 
     public String getBetType() {
         return betType;
-        }
+    }
 
     
 }

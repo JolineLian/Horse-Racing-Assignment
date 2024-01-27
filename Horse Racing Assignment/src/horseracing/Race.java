@@ -73,7 +73,7 @@ public class Race {
         resetHorses();
         int numSpaces = (int)(raceLength*10);
         boolean done = false;
-        HorseRacingHelper.pauseForMilliseconds(1000);
+        HorseRacingHelper.pauseForMilliseconds(100);
         HorseRacingHelper.playBackgroundMusicAndWait("Race.wav");
         HorseRacingHelper.playBackgroundMusic("horse_gallop.wav", true);
 
@@ -116,16 +116,16 @@ public class Race {
 
     private int getIncrement(Horse horse) {
         // we have racelength and racesurface (as attributes)
-        horse.getDirtRating();
-        horse.getGrassRating();
-        horse.getMudRating();
-        this.getRaceLength();
-        this.getRaceSurface();
+        // horse.getDirtRating();
+        // horse.getGrassRating();
+        // horse.getMudRating();
+        // this.getRaceLength();
+        // this.getRaceSurface();
 
         // check race surface and check horses and compare race length with preferred length
     
 
-        int d = (int)(7 - Math.abs(horse.getPreferredLength() - this.raceLength));
+        int d = (int)(7 - Math.abs(horse.getPreferredLength() - raceLength));
 
         // System.out.println(horse.getName() + " d = " + d);
 

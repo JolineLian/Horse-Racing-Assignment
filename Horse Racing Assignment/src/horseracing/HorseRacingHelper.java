@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -89,7 +90,7 @@ public class HorseRacingHelper {
         return shuffledList.subList(0, n);
     }
 
-    public static Race createRace(int numHorses, int raceType, int raceTerrain){
+    public static Race createRace(Scanner in, int numHorses, int raceType, int raceTerrain){
         double[] raceLengths;
         if (raceType == SHORT)
             raceLengths = SHORT_RACES;
@@ -115,7 +116,7 @@ public class HorseRacingHelper {
         for (int j = 1; j <= horses.size(); j++) {
             horses.get(j-1).setNumber(j);
         }
-        
+
         return new Race(horses, raceLength, terrain);
     }
 
@@ -254,4 +255,16 @@ public class HorseRacingHelper {
             e.printStackTrace();
         }
     } 
+
+    public static int getMovementDirection(Scanner in) {
+        String direction = in.nextLine();
+
+        if (direction.equals("d")) {
+            return 1;
+        }
+        if (direction.equals("a")) {
+            return -1;
+        }
+        return 0;
+    }
 }

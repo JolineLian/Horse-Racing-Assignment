@@ -7,8 +7,9 @@ public class HorseRacing {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);    
         HorseRacingHelper.prepareHorseRacingSimulation();
-        Player p1 = new Player();
         boolean gameOver = false;
+        Player player = new Player();
+
 
         while(!gameOver){
             HorseRacingHelper.clearConsole();
@@ -19,16 +20,17 @@ public class HorseRacing {
 
             int trackSurface = (int)(Math.random()*3);
 
-            Race race = HorseRacingHelper.createRace(numHorsesInRace, trackLength, trackSurface);
+            Street street = new Street();
+            Buildings bank = new Buildings("bank");
+            Buildings store = new Buildings("shop");
+            Venue venue = new Venue("Horse Racing Venue");
+            NPC npc = new NPC();
 
-            race.displayRaceInfo();
-            race.drawTable();
-            p1.initWalletBalance(in);
-            p1.createBet(numHorsesInRace, in);
+            store.drawStore(npc, player);
+            bank.drawBank(npc, player);
+            Street.drawStreet(bank, store, venue, npc);
 
-            race.startRace(p1);
-
-
+            Street.renderStreet(in, bank, store, npc, venue , player);
 
             System.out.println("Race is Over");
 
