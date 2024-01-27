@@ -72,6 +72,8 @@ public class Horse{
             finishedRace = false;
         }
 
+        // Joline
+        // calculates win odds by finding difference between preferred length and race length, it then calculates the amount to add depending on the rating for the race surface
         public double getWinningOdd(double raceLength, String raceSurface){
             double winOdd = 2 + (Math.abs(preferredLength - raceLength));
 
@@ -82,7 +84,9 @@ public class Horse{
             return winOdd;
         }
 
-        // the higher chance they have of winning the higher change they have of placing, if their chance of winning is super low then their chancec of placing is lower
+        // Joline
+        // gets the place odd by determining how looking at how high or low the win odd is
+        // the higher chance they have of winning the higher chance they have of placing, if their chance of winning is super low then their chancec of placing is lower because placing is close to winning and if they cant get close to winning then they can't place
         public double getPlaceOdd(double winOdd) { 
             if (winOdd < 3) return winOdd;
             if (winOdd >= 3 && winOdd <= 5) return winOdd - 1;
@@ -90,6 +94,9 @@ public class Horse{
             return winOdd + 4;
         }
 
+        // Joline
+        // gets the show odd, if there is a higher chance of winning than placing then there is a higher chance of placing than showing, 
+        // if there is a lower chance of winning than plcaing then there is a lower chacne of placing than showing
         public double getShowOdd(double placeOdd, double winOdd) {
             if (winOdd < placeOdd) return placeOdd + 2;
             if (winOdd > placeOdd) return placeOdd - 2;

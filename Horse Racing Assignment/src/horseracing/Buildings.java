@@ -9,7 +9,7 @@ public class Buildings {
     private boolean isMovingHorizontal = false;
     private boolean isMovingVertical = false;
     private boolean isInteracting = false;
-    private String[][] storeItems = {{"Apple", "Golden apple", "poison", "chips", "water"}, {"50", "500", "300", "15", "50"}, {"a refreshing treet for your horse (+1 increment)", "ultimate horse booster? (+4 increment)", "poison your enemies (-4 increment)", "a snack for you (does nothing)", "hydrates horse (+2)"}};
+    private String[][] storeItems = {{"Apple", "Golden apple", "poison", "chips", "water"}, {"50", "500", "300", "15", "50"}, {"a refreshing treet for your horse", "ultimate horse booster?", "poison your enemies", "a snack for you", "hydrates horse"}};
 
     public Buildings(String name) {
         this.name = name;

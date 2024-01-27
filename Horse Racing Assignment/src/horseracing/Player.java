@@ -21,29 +21,6 @@ public class Player {
         inventory = new ArrayList<String>();
     }
 
-    public void initWalletBalance(Scanner in) {
-        double initValue = 0.0;
-        System.out.println("How much money is in your wallet?");
-
-        while (!(in.hasNextDouble())) {
-            in.nextLine();
-            System.out.println("Enter a number:");
-        } 
-
-        initValue = Double.parseDouble(in.nextLine());
-
-        while (!(initValue > 0)) {
-            System.out.println("Invalid input, enter a value greater than 0");
-            while (!(in.hasNextDouble())) {
-                in.nextLine();
-                System.out.println("Enter a number:");
-            }
-            initValue = Double.parseDouble(in.nextLine());
-        }
-
-        wallet += initValue;
-    }
-
     public static void depositMoney(double amountChanged) {
         bank += amountChanged;
         wallet -= amountChanged;
