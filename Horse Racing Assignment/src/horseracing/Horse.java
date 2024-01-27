@@ -106,7 +106,7 @@ public class Horse{
 
         
          public double getExactaOdd(double placeOdd, double winOdd) {                // exacta odds = 1/# of possible combinations
-            double exactaOdd = winOdd * (placeOdd +1);
+            double exactaOdd = winOdd * (placeOdd + 1);
             return exactaOdd;
         }                                                                            // # of possible combinations = n x (n - 1) <- eg. 10 x 9 (for the first pick you have 10 choices, for the second pick you have 9 choices)
         
@@ -120,11 +120,11 @@ public class Horse{
 
 
         public double getExactaBoxOdd(int[] oddsHorse1, int[] oddsHorse2) {
-            double decimalOddsHorse1 = (double) oddsHorse1[0] / oddsHorse1[1]; // HELP
+            double decimalOddsHorse1 = (double) oddsHorse1[0] / oddsHorse1[1]; 
             double decimalOddsHorse2 = (double) oddsHorse2[0] / oddsHorse2[1];
      
-            double totalOdds = (decimalOddsHorse1 * decimalOddsHorse2) - 1;  // multiplying number of selections for first by number of selections for second, minus 1
+            double boxOdd = (decimalOddsHorse1 * decimalOddsHorse2) - 1;  // multiplying number of selections for first by number of selections for second, minus 1
 
-            return totalOdds;
+            return boxOdd;
         }
 }

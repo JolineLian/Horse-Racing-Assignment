@@ -19,12 +19,12 @@ public class Bet {
     public void startbetting (Scanner in, double wallet, int numHorses) {
         String toBetOrNot = "";  
 
-        if (wallet <= 0) {
+        if (wallet <= 0) {  // If money is less than 0, return this - Elina
             System.out.println("You do not have enough money to bet");
             return;
         }
 
-        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): ");
+        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): "); // Scanner
         betType = in.nextLine();
 
         while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) {
@@ -150,7 +150,10 @@ public class Bet {
         double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
         double placeOdd = results.get(2).getPlaceOdd(winOdd);
         double showOdd = results.get(3).getShowOdd(placeOdd, winOdd);
-        double exactaOdd = winOdd * (placeOdd +1);
+        double exactaOdd = winOdd * (placeOdd + 1);
+        double firstHorseBoxOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
+        double secondHorseBoxOdd = results.get(2).getShowOdd(placeOdd, winOdd);
+ 
 
         if (betType.equalsIgnoreCase("win")) {
             if (horseBet1 == results.get(1).getNumber()) {
@@ -168,7 +171,9 @@ public class Bet {
             }
         }
         if (betType.equalsIgnoreCase("box")) {
-            
+            if (horseBet1 == results.get(1).getNumber() || horseBet1 == results.get(2).getNumber() && horseBet2 == results.get(1).getNumber() || horseBet2 == results.get(2).getNumber()) {
+                return amountBet * firstHorseBoxOdd * secondHorseBoxOdd;
+            }
         }
         if (betType.equalsIgnoreCase("exacta")) {
             if (horseBet1 == results.get(1).getNumber() && horseBet2 == results.get(2).getNumber())
