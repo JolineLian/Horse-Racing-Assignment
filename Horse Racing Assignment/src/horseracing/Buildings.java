@@ -2,6 +2,7 @@ package horseracing;
 
 import java.util.Scanner;
 
+// Joline
 public class Buildings {
     private String name;
     private String[][] buildings;
@@ -17,6 +18,8 @@ public class Buildings {
         buildingInside = new String[20][100];
     }
 
+    // Joline
+    // draws the building on the street by drawing the base layer and using the name to distinguish between different buildings
     public void drawBuilding() {
         for (int i = 0; i < 10; i++) {
             if (i > 0 && i < 9) {
@@ -57,11 +60,12 @@ public class Buildings {
             }
         }
     }
-
     public String[][] getBuildingArray() {
         return this.buildings;
     }
 
+    // Joline
+    // this method first draws the npc and players so there is no null spaces in the 2d array, it then sets the elements at index [i][j] of buildingInside to the base building, npc and player
     public void drawBank(NPC npc, Player player) {
         npc.drawNPC();
         player.drawPlayer();
@@ -109,6 +113,8 @@ public class Buildings {
         }
     }
 
+    // Joline
+    // sets the elements of buildingInside at [i][j] to the characters that are needed to draw the inside of the store
     public void drawStore(NPC npc, Player player) {
         npc.drawNPC();
         player.drawPlayer();
@@ -164,6 +170,8 @@ public class Buildings {
         }
     }
 
+    // Joline
+    // displays the inside of the building onto the screen then allows the player to move by calling movePlayer()
     public void renderBuildingInside(Scanner in, Buildings bank, Buildings store, NPC npc, Venue venue, Player player) {
         Street.setIsDoneMovingTrue();
         for (int i = 0; i < 20; i++) {
@@ -175,6 +183,8 @@ public class Buildings {
         movePlayer(in, bank, store, npc, venue, player);
     }
 
+    // Joline
+    // clears the player from the inside of the building so there are not multiple players when the player moves indexes in the 2d array
     public void clearPlayer() {
         int playerHeadPosRow = getPlayerHeadPos()[0];
         int playerHeadPosCol = getPlayerHeadPos()[1]-1;
@@ -186,6 +196,9 @@ public class Buildings {
         }
     }
 
+    // Joline
+    // searches the 2d array buildingInside for the character that represents the players head (works because the npc's do not have the same character for a head as the player)
+    // results in a return of the position of the players head in the 2d array thereby allowing you to find the position of the whole player
     public int[] getPlayerHeadPos() {
         int[] playerPos = new int[2];
 
@@ -200,26 +213,33 @@ public class Buildings {
         return playerPos;
         }
 
+    // Joline 
+    // moves player to a different index in the 2d array
     public void movePlayer(Scanner in, Buildings bank, Buildings store, NPC npc, Venue venue, Player player) {
         int playerPosRow = getPlayerHeadPos()[0];
         int playerPosCol = getPlayerHeadPos()[1]-1;
         int movement = getMovementDireciton(in);
         String[][] temp = new String[20][100];
 
+        // elements in buildingInside is coppied to temp so temp does not have null elements
         while (isMovingHorizontal) {
         for (int i=0; i<buildingInside.length; i++) {
             for (int j=0; j<buildingInside[i].length; j++) {
                 temp[i][j] = buildingInside[i][j];
             }
         }
+        // clears the player from the buildingInside so that there are no double players
         clearPlayer();
+        // draws the new playerPos to the inside of buildingInside by finding player in temp and incrasing [j] for buildingInside to show the next playerPos
         for (int i=playerPosRow; i<playerPosRow+3; i++) {
             for (int j=playerPosCol; j<playerPosCol+3; j++) {
                 buildingInside[i][j+movement] = temp[i][j];
             }
         }
+        // displays the inside of the building with the new player position
         renderBuildingInside(in, bank, store, npc, venue, player);
         }
+        // does the same as the horizontal one but now instead of the movement being added or subtracted from [j] (columns) its added or subtracted from [i] (rows)
         while (isMovingVertical) {
             for (int i=0; i<buildingInside.length; i++) {
                 for (int j=0; j<buildingInside[i].length; j++) {
@@ -234,15 +254,19 @@ public class Buildings {
             }
             renderBuildingInside(in, bank, store, npc, venue, player);
         }
+        // starts interacting with npc's in the building
         if (isInteracting) {
             startInteracting(in, bank, store, npc, venue, player);
             isInteracting = false;
         }
     }
 
+    // Joline
+    // starts interaction with npc's
     public void startInteracting(Scanner in, Buildings bank, Buildings store, NPC npc, Venue venue, Player player) {
         int playerPosRow = getPlayerHeadPos()[0];
         int playerPosCol = getPlayerHeadPos()[1]-1;
+        // if the index of the letter that represents the NPC is near the index of the player then the npc will interact with the player
         for (int i=playerPosRow; i<playerPosRow+3; i++) {
             for (int j=playerPosCol-3; j<playerPosCol+6; j++) {
                 if (buildingInside[i][j].equals("B")) {
@@ -251,6 +275,7 @@ public class Buildings {
                 if (buildingInside[i][j].equals("S")) {
                     NPC.interactStoreNPC(in, store, npc, venue, player);
                 }
+                // exits the building
                 if (buildingInside[i][j].equals("E")) {
                     Street.renderStreet(in, bank, store, npc, venue, player);
                 }
@@ -258,9 +283,12 @@ public class Buildings {
         }
     }
 
+    // Joline 
+    // gets the movement direction of the player by allowing player to input a string and returning the amonut to move and which direction or returning if the player is interacting with an something or not
     public int getMovementDireciton(Scanner in) {
         String movement = in.nextLine();
 
+        // checks if the player inputs wasd, if not then it returns 0 and does not set any boolean to true so player doesn't move in or interact with anything in movePlayer() class
         if (movement.equals("d")) {
             isMovingHorizontal = true;
             isMovingVertical = false;
@@ -287,6 +315,8 @@ public class Buildings {
         }
     }
 
+    // Joline
+    // displayes what items are buyable/in the store
     public void renderStoreItems() {
     System.out.println("+---------------+----------+--------------------------------------------------+");
     System.out.printf("|%-15s|%10s|%50s|\n", "item name", "price ($)", "Description");

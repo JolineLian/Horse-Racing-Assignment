@@ -255,16 +255,4 @@ public class HorseRacingHelper {
             e.printStackTrace();
         }
     } 
-
-    public static int getMovementDirection(Scanner in) {
-        String direction = in.nextLine();
-
-        if (direction.equals("d")) {
-            return 1;
-        }
-        if (direction.equals("a")) {
-            return -1;
-        }
-        return 0;
-    }
 }

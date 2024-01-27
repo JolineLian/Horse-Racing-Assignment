@@ -16,6 +16,8 @@ public class Bet {
         horseBet2 = 0;
     }
 
+    // Joline
+    // determines what type of bet the user is going to bet, it then sets how much the user wants to bet to amountBet. It then checks which type of bet the user entered and calls a method to bet on a horse 
     public void startbetting (Scanner in, double wallet, int numHorses) {
         String toBetOrNot = "";  
 
@@ -24,10 +26,10 @@ public class Bet {
             return;
         }
 
-        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): "); // Scans users response
+        System.out.println("What type of bet do you want to place? (win, place, show, box, exacta): ");
         betType = in.nextLine();
 
-        while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) { // If they type anything other than the following, it asks again
+        while (!betType.equalsIgnoreCase("win") && !betType.equalsIgnoreCase("place") && !betType.equalsIgnoreCase("show") && !betType.equalsIgnoreCase("box") && !betType.equalsIgnoreCase("exacta")) {
             System.out.println("Invalid input. Would you still like to bet?");
             toBetOrNot = in.nextLine();
             if (toBetOrNot.equalsIgnoreCase("N") || toBetOrNot.equalsIgnoreCase("no")) {
@@ -79,6 +81,8 @@ public class Bet {
         return amountBet;
     }
 
+    // Joline
+    // bets on a single horse (win, place, or show)
     public void singleHorseBet(Scanner in, int numHorses) {
         System.out.println("which horse do you want to bet on (enter number)");
 
@@ -177,7 +181,7 @@ public class Bet {
             }
         }
     }
-
+    
     public double betResults(List<Horse> results, double raceLength, String raceSurface) {  // Returns odds for each betting type
         // Used at the end of the race to return amt of money made
         double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);

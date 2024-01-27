@@ -2,6 +2,7 @@ package horseracing;
 
 import java.util.Scanner;
 
+// Joline
 public class Venue{
     private static int numRaces;
     private String[][] venue;
@@ -12,6 +13,7 @@ public class Venue{
         this.name = name;
     }
 
+    // determines the number of races player wants to participate in
     public static void findNumRaces(Scanner in) {
         System.out.println("how many races would you like to participate in?");
 
@@ -38,6 +40,7 @@ public class Venue{
         return numRaces;
     }
 
+    // draws the venue to be displayed in drawStreet in the Street class
     public void drawVenue() {
         for (int i=0; i<10; i++) {
             if (i>0 && i<9) {

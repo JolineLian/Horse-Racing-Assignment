@@ -21,12 +21,16 @@ public class Player {
         inventory = new ArrayList<String>();
     }
 
-    public static void depositMoney(double amountChanged) { // Gives amountChanged to the bank and subtracts it from the wallet. We did this to make the betting system more realistic
+    // Joline
+    // deposits money into the bank and takes money out of wallet
+    public static void depositMoney(double amountChanged) { 
         bank += amountChanged;
         wallet -= amountChanged;
     }
 
-    public static void withdrawMoney(double amountChanged) {    // Opposite of depositMoney. Bank 'loses' money and it gets added to wallet.
+    // Joline
+    // withdraws money from bank and puts that money in wallet
+    public static void withdrawMoney(double amountChanged) {
         bank -= amountChanged;
         wallet += amountChanged;
     }

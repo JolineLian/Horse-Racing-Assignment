@@ -95,9 +95,6 @@ public class Race {
                 results.add(horse);
                 horse.setRaceFinished(true);
             } else if(!horse.raceFinished()){
-
-                // HorseRacingHelper.pauseForMilliseconds(5000);
-
                 horse.incrementPosition(getIncrement(horse));
 
             }
