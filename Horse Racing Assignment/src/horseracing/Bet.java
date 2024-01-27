@@ -99,7 +99,7 @@ public class Bet {
         }
     }
 
-    public void betExacta(Scanner in, int numHorses) {
+    public void betExacta(Scanner in, int numHorses) {  // Elina - Asks user which horses they want to bet exacta on
         System.out.println("which horse do you think will place first (enter number)");
 
         while(!(in.hasNextInt())) {
@@ -108,7 +108,7 @@ public class Bet {
         }
         horseBet1 = Integer.parseInt(in.nextLine());
 
-        while (horseBet1 < 0 || horseBet1 > numHorses) {
+        while (horseBet1 < 0 || horseBet1 > numHorses) {    // Elina - If horseBet1 is less than 0 or more than # of horses, asks you to reinput
             System.out.println("invalid input, please enter a correct horse number");
             while(!(in.hasNextInt())) {
                 in.nextLine();
@@ -125,7 +125,7 @@ public class Bet {
         }
         horseBet2 = Integer.parseInt(in.nextLine());
 
-        while (horseBet2 < 0 || horseBet2 > numHorses) {
+        while (horseBet2 < 0 || horseBet2 > numHorses) {    // Elina - If horseBet2 is less than 0 or more than # of horses, asks you to reinput
             System.out.println("invalid input, please enter a correct horse number");
             while(!(in.hasNextInt())) {
                 in.nextLine();
@@ -143,8 +143,39 @@ public class Bet {
         while (horseBet1 < 0 || horseBet1 > numHorses) {
             System.out.println("invalid input, please enter a correct horse number");
             horseBet1 = in.nextInt();
+            
+            while(!(in.hasNextInt())) {
+                in.nextLine();
+                System.out.println("enter a number:");
+            }
+            horseBet1 = Integer.parseInt(in.nextLine());
+    
+            while (horseBet1 < 0 || horseBet1 > numHorses) {    // Elina - If horseBet1 is less than 0 or more than # of horses, asks you to reinput
+                System.out.println("invalid input, please enter a correct horse number");
+                while(!(in.hasNextInt())) {
+                    in.nextLine();
+                    System.out.println("enter a number:");
+                }
+                horseBet1 = Integer.parseInt(in.nextLine());
+            }
+    
+            System.out.println("which horse do you think will place second (enter number)");
+    
+            while(!(in.hasNextInt())) {
+                in.nextLine();
+                System.out.println("enter a number:");
+            }
+            horseBet2 = Integer.parseInt(in.nextLine());
+    
+            while (horseBet2 < 0 || horseBet2 > numHorses) {    // Elina - If horseBet2 is less than 0 or more than # of horses, asks you to reinput
+                System.out.println("invalid input, please enter a correct horse number");
+                while(!(in.hasNextInt())) {
+                    in.nextLine();
+                    System.out.println("enter a number:");
+                }
+                horseBet2 = Integer.parseInt(in.nextLine());
+            }
         }
-    }
 
     public double betResults(List<Horse> results, double raceLength, String raceSurface) {  // Returns odds for each betting type
         // Used at the end of the race to return amt of money made
