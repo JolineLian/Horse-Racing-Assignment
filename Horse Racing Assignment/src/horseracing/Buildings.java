@@ -11,7 +11,7 @@ public class Buildings {
     private boolean isMovingVertical = false;
     private boolean isInteracting = false;
     private String[][] storeItems = {{"Apple", "Golden apple", "poison", "chips", "water"}, {"50", "500", "300", "15", "50"}, {"a refreshing treet for your horse", "ultimate horse booster?", "poison your enemies", "a snack for you", "hydrates horse"}};
-
+    
     public Buildings(String name) {
         this.name = name;
         buildings = new String[10][20];

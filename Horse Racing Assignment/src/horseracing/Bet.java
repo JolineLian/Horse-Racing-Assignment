@@ -181,16 +181,15 @@ public class Bet {
             }
         }
     }
-    
+
     public double betResults(List<Horse> results, double raceLength, String raceSurface) {  // Returns odds for each betting type
         // Used at the end of the race to return amt of money made
         double winOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
         double placeOdd = results.get(2).getPlaceOdd(winOdd);
         double showOdd = results.get(3).getShowOdd(placeOdd, winOdd);
         double exactaOdd = winOdd * (placeOdd + 1);
-        double firstHorseBoxOdd = results.get(1).getWinningOdd(raceLength, raceSurface);
-        double secondHorseBoxOdd = results.get(2).getShowOdd(placeOdd, winOdd);
- 
+        double[] firstHorseBoxOdd = {results.get(1).getWinningOdd(raceLength, raceSurface), results.get(1).getPlaceOdd(winOdd)};
+        double[] secondHorseBoxOdd = {results.get(2).getWinningOdd(raceLength, raceSurface), results.get(2).getPlaceOdd(winOdd)};
 
         if (betType.equalsIgnoreCase("win")) {
             if (horseBet1 == results.get(1).getNumber()) {
@@ -209,7 +208,7 @@ public class Bet {
         }
         if (betType.equalsIgnoreCase("box")) {
             if (horseBet1 == results.get(1).getNumber() || horseBet1 == results.get(2).getNumber() && horseBet2 == results.get(1).getNumber() || horseBet2 == results.get(2).getNumber()) {
-                return amountBet * firstHorseBoxOdd * secondHorseBoxOdd;
+                return amountBet ;
             }
         }
         if (betType.equalsIgnoreCase("exacta")) {

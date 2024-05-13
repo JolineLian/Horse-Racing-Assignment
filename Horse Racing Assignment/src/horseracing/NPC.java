@@ -42,7 +42,7 @@ public class NPC {
         } else {
             interactBankNPC(in);
         }
-
+        
         amountChanged = Double.parseDouble(in.nextLine());
 
         while (!(amountChanged > 0)) {
@@ -66,7 +66,7 @@ public class NPC {
     public static void interactStoreNPC(Scanner in, Buildings store, NPC npc, Venue venue, Player player) {
         String interactionChoice;
         store.renderStoreItems();
-        System.out.println("What would you like to buy?");
+        System.out.println("What would you like to buy? Enter exit to exit the buying thing");
         interactionChoice = in.nextLine();
 
         if (interactionChoice.equalsIgnoreCase("exit")) {
